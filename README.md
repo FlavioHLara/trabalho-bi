@@ -15,6 +15,14 @@ Conforme o escopo pedido, a página reúne:
 - Mateus Amaral Lara
 - Ronaldo Soares de Oliveira Junior
 
+## Montar o painel do Power BI
+
+A pasta `powerbi/` tem tudo o que é preciso:
+
+- **`Postos_Betim_PowerBI.xlsx`** — a base já organizada em três abas (`Postos`, `Precos`, `Servicos`),
+  pronta para importar ou colar no Power BI.
+- **`GUIA-POWER-BI.md`** — passo a passo da importação, das medidas DAX, dos 8 visuais e da publicação.
+
 ## Como publicar o link do Power BI
 
 O link ainda não foi inserido. No Power BI Service, abra o relatório e use
@@ -36,6 +44,7 @@ O endereço fica `https://flaviohlara.github.io/trabalho-bi/`.
 index.html              a página
 assets/css/style.css    estilos
 dados/                  planilhas de origem do trabalho (CSV e XLSX)
+powerbi/                base organizada para o Power BI e o guia de montagem
 ```
 
 ## Fontes dos dados
