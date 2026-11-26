@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Postos de Combustível de Betim/MG — Painel de BI</title>
+<meta name="description" content="Painel de Business Intelligence sobre os postos de combustível de Betim/MG: preços, bandeiras, serviços e localização.">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="brand-mark">⛽</span> Postos de Betim</div>
+    <nav>
+      <a href="#indicadores">Indicadores</a>
+      <a href="#precos">Preços</a>
+      <a href="#mapa-sec">Mapa</a>
+      <a href="#dados">Dados</a>
+      <a href="#sobre">Sobre</a>
+    </nav>
+    <button class="theme-btn" id="theme-btn" type="button">Modo escuro</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <p class="eyebrow">Business Intelligence · Trabalho da disciplina</p>
+    <h1>Onde abastecer em Betim: preços, bandeiras e serviços dos postos</h1>
+    <p>Um painel para comparar o que cada posto da cidade cobra por litro, qual bandeira ele representa e
+      quais serviços oferece ao motorista. Os dados vêm das planilhas levantadas pelo grupo e estão
+      abertos para consulta, filtro e ordenação ao final da página.</p>
+    <div class="hero-meta">
+      <span class="pill">20 postos mapeados</span>
+      <span class="pill">Betim · Minas Gerais</span>
+      <span class="pill">Preços de referência: jul/2026</span>
+      <a class="pill link" href="https://www.arcgis.com/apps/instant/portfolio/index.html?appid=b191c9f16548430f80f37fa9dd80865e" target="_blank" rel="noopener">Portfólio ArcGIS ↗</a>
+    </div>
+  </div>
+
+  <section id="indicadores">
+    <div class="section-head">
+      <h2>Indicadores gerais</h2>
+      <p>Visão rápida do mercado de combustíveis da cidade. As médias consideram apenas os postos com preço publicado e atualizado.</p>
+    </div>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <section id="precos">
+    <div class="section-head">
+      <h2>Preços</h2>
+      <p>Comparação por combustível, por bandeira e por posto. Como os preços da gasolina variam pouco entre
+        os postos, os dois gráficos de comparação mostram a diferença em relação ao mais barato — passe o
+        mouse sobre a barra para ver o preço cheio.</p>
+    </div>
+    <div class="chart-grid">
+      <div class="card">
+        <p class="chart-title">Preço médio por combustível</p>
+        <p class="chart-sub">Média da cidade, em R$ por litro</p>
+        <div class="hbar" id="chart-combustivel"></div>
+      </div>
+      <div class="card">
+        <p class="chart-title">Gasolina comum por bandeira</p>
+        <p class="chart-sub">Quanto cada rede cobra a mais que a mais barata, por litro</p>
+        <div class="legend" id="legend-bandeira"></div>
+        <div class="hbar" id="chart-bandeira"></div>
+      </div>
+      <div class="card">
+        <p class="chart-title">Postos por bandeira</p>
+        <p class="chart-sub">Quantos dos 20 postos pertencem a cada rede</p>
+        <div class="hbar" id="chart-contagem"></div>
+      </div>
+      <div class="card">
+        <p class="chart-title">Serviços oferecidos</p>
+        <p class="chart-sub">Número de postos que disponibilizam cada serviço</p>
+        <div class="hbar" id="chart-servicos"></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <p class="chart-title">Ranking da gasolina comum</p>
+      <p class="chart-sub">Quanto cada posto cobra a mais que o mais barato da cidade, por litro</p>
+      <div class="hbar" id="chart-ranking"></div>
+    </div>
+  </section>
+
+  <section id="mapa-sec">
+    <div class="section-head">
+      <h2>Mapa dos postos</h2>
+      <p>Cada ponto é um posto, colorido pela bandeira. Clique para ver endereço, preços e serviços.</p>
+    </div>
+    <div class="legend" id="legend-mapa"></div>
+    <div id="mapa"></div>
+  </section>
+
+  <section id="dados">
+    <div class="section-head">
+      <h2>Base de dados</h2>
+      <p>Filtre por bandeira, serviço ou nome e ordene clicando no título de qualquer coluna. O menor preço de cada combustível aparece destacado em verde.</p>
+    </div>
+
+    <div class="card">
+      <div class="filters">
+        <div class="field">
+          <label for="f-busca">Buscar</label>
+          <input id="f-busca" type="search" placeholder="Nome, rua ou bairro">
+        </div>
+        <div class="field">
+          <label for="f-bandeira">Bandeira</label>
+          <select id="f-bandeira"><option value="">Todas</option></select>
+        </div>
+        <div class="field">
+          <label for="f-ordem">Ordenar por</label>
+          <select id="f-ordem">
+            <option value="nome">Nome (A–Z)</option>
+            <option value="gasolina">Gasolina mais barata</option>
+            <option value="alcool">Etanol mais barato</option>
+            <option value="diesel">Diesel mais barato</option>
+            <option value="media">Preço médio</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Serviços</label>
+          <div class="chips">
+            <button class="chip" type="button" data-svc="conveniencia" aria-pressed="false">Conveniência</button>
+            <button class="chip" type="button" data-svc="lavaJato" aria-pressed="false">Lava-jato</button>
+            <button class="chip" type="button" data-svc="eletrico" aria-pressed="false">Carregador elétrico</button>
+            <button class="chip" type="button" data-svc="precos" aria-pressed="false">Com preço publicado</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="result-count" id="result-count"></p>
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th data-sort="nome">Posto</th>
+              <th data-sort="endereco">Endereço</th>
+              <th data-sort="bandeira">Bandeira</th>
+              <th data-sort="gasolina" class="num">Gasolina</th>
+              <th data-sort="aditivada" class="num">Aditivada</th>
+              <th data-sort="alcool" class="num">Etanol</th>
+              <th data-sort="diesel" class="num">Diesel</th>
+              <th data-sort="media" class="num">Médio</th>
+              <th>Serviços</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+      <p class="kpi-note">Serviços: <strong>C</strong> conveniência · <strong>L</strong> lava-jato · <strong>B</strong> banheiro · <strong>P</strong> calibrador de pneu · <strong>E</strong> carregador elétrico · <strong>24h</strong> aberto 24 horas.</p>
+    </div>
+  </section>
+
+  <section id="sobre">
+    <div class="section-head">
+      <h2>Sobre o trabalho</h2>
+      <p>Projeto desenvolvido para a disciplina de Business Intelligence. O levantamento de campo e a
+        consolidação dos dados resultaram nas planilhas que alimentam este painel, o portfólio de mapas no
+        ArcGIS e o relatório no Power BI.</p>
+    </div>
+
+    <div class="chart-grid">
+      <div class="card">
+        <p class="chart-title">Integrantes do grupo</p>
+        <div class="members">
+          <div class="member">Diogo Lamera dos Santos</div>
+          <div class="member">Flávio Henrique Lara Santos</div>
+          <div class="member">Mateus Amaral Lara</div>
+          <div class="member">Ronaldo Soares de Oliveira Junior</div>
+        </div>
+      </div>
+      <div class="card">
+        <p class="chart-title">Fontes e observações</p>
+        <ul class="sources" id="fontes"></ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Painel estático construído a partir das planilhas do grupo. Os preços variam diariamente e servem
+    como referência comparativa, não como cotação oficial de cada posto.
+  </footer>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
