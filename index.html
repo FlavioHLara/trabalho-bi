@@ -126,16 +126,6 @@
     <p>Painel construído com a mesma base de dados, reunindo os gráficos de análise de preços, bandeiras
       e serviços dos postos.</p>
 
-    <!-- ===================================================================
-         PARA PUBLICAR O PAINEL:
-         No Power BI Service, abra o relatório e vá em
-         Arquivo → Inserir relatório → Site ou portal  (ou Compartilhar → Inserir).
-         Copie o link gerado e cole nos DOIS lugares abaixo:
-           1. no href do link "Abrir o painel"
-           2. no src do <iframe>
-         Depois apague o parágrafo com a classe "pendente".
-         =================================================================== -->
-
     <div class="card link-card">
       <div class="card-body">
         <span class="card-icon"><svg class="icon"><use href="#i-painel"/></svg></span>
@@ -144,17 +134,16 @@
           <p class="card-title">Postos de combustível de Betim — painel analítico</p>
         </div>
       </div>
-      <a class="btn" href="COLE_AQUI_O_LINK_DO_POWER_BI" target="_blank" rel="noopener">Abrir o painel ↗</a>
+      <a class="btn" href="https://app.powerbi.com/reportEmbed?reportId=e33c5f0e-7787-4a79-8cd4-ead15f885ef9&amp;autoAuth=true&amp;ctid=5e2a8164-87b6-430b-ac6b-08d6229e7059" target="_blank" rel="noopener">Abrir o painel ↗</a>
     </div>
 
-    <p class="pendente">Substitua <code>COLE_AQUI_O_LINK_DO_POWER_BI</code> pelo link compartilhado do
-      painel e descomente o bloco do <code>iframe</code> abaixo no arquivo <code>index.html</code>.</p>
-
-    <!--
     <div class="embed">
-      <iframe title="Painel Power BI — Postos de Betim" src="COLE_AQUI_O_LINK_DO_POWER_BI" allowfullscreen></iframe>
+      <iframe title="Painel Power BI — Postos de Betim" src="https://app.powerbi.com/reportEmbed?reportId=e33c5f0e-7787-4a79-8cd4-ead15f885ef9&amp;autoAuth=true&amp;ctid=5e2a8164-87b6-430b-ac6b-08d6229e7059" allowfullscreen></iframe>
     </div>
-    -->
+
+    <p class="nota">O painel é exibido pelo Power BI da instituição: é preciso estar conectado com a conta
+      institucional para visualizá-lo. Caso o quadro acima apareça em branco, use o botão
+      <em>Abrir o painel</em> para entrar e ver o relatório.</p>
   </section>
 
 </main>

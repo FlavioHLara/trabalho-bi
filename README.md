@@ -23,15 +23,15 @@ A pasta `powerbi/` tem tudo o que é preciso:
   pronta para importar ou colar no Power BI.
 - **`GUIA-POWER-BI.md`** — passo a passo da importação, das medidas DAX, dos 8 visuais e da publicação.
 
-## Como publicar o link do Power BI
+## Link do painel do Power BI
 
-O link ainda não foi inserido. No Power BI Service, abra o relatório e use
-**Arquivo → Inserir relatório → Site ou portal** (ou **Compartilhar → Inserir**).
-Copie o link gerado e, em `index.html`, dentro da seção `#painel`:
+O link já está inserido na seção `#painel` do `index.html`, em dois lugares: no `href` do botão
+"Abrir o painel" e no `src` do `<iframe>` embutido.
 
-1. substitua `COLE_AQUI_O_LINK_DO_POWER_BI` no `href` do botão "Abrir o painel";
-2. descomente o bloco do `<iframe>` e cole o mesmo link no `src`, para o painel aparecer embutido na página;
-3. apague o parágrafo de aviso com a classe `pendente`.
+O link atual é do tipo **Inserir relatório → Site ou portal**, que exige login com a conta
+institucional — quem não tiver acesso verá "Entre para ver este relatório". Se for preciso um link
+aberto a qualquer visitante, gere um novo em **Arquivo → Inserir relatório → Publicar na web
+(público)** e troque o endereço nos dois pontos acima.
 
 ## Publicar o site no GitHub Pages
 

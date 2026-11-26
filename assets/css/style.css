@@ -351,26 +351,22 @@ strong { color: var(--text-primary); font-weight: 620; }
 
 .btn:hover { filter: brightness(1.12); }
 
-.pendente {
-  margin: 12px 0 0;
+.nota {
+  margin: 14px 0 0;
   background: var(--amber-soft);
   border: 1px solid color-mix(in srgb, var(--amber) 40%, transparent);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   border-radius: 10px;
   padding: 12px 16px;
   font-size: 14px;
+  line-height: 1.55;
 }
 
-.pendente::before {
+.nota::before {
   content: "⛽ ";
 }
 
-.pendente code {
-  font-size: 13px;
-  background: var(--wash);
-  padding: 1px 5px;
-  border-radius: 4px;
-}
+.nota em { color: var(--text-primary); font-style: normal; font-weight: 600; }
 
 /* ---------- Embed do Power BI ---------- */
 
