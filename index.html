@@ -9,9 +9,29 @@
 </head>
 <body>
 
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-bomba" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 21V5a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v16"/>
+    <path d="M3 21h11"/><path d="M6 9h5"/>
+    <path d="M13 8h3.5a1.5 1.5 0 0 1 1.5 1.5v7a1.5 1.5 0 0 0 3 0V11l-2.5-3"/>
+  </symbol>
+  <symbol id="i-alunos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 8l9-4 9 4-9 4-9-4z"/><path d="M7 10.2V15c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-4.8"/><path d="M21 8v5"/>
+  </symbol>
+  <symbol id="i-mapa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/>
+  </symbol>
+  <symbol id="i-painel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 20h18"/><rect x="4" y="12" width="4" height="7" rx="1"/><rect x="10" y="7" width="4" height="12" rx="1"/><rect x="16" y="10" width="4" height="9" rx="1"/>
+  </symbol>
+</svg>
+
 <header class="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span class="brand-mark">⛽</span> Postos de Betim</div>
+    <a class="brand" href="#top">
+      <span class="brand-mark"><svg class="icon"><use href="#i-bomba"/></svg></span>
+      Postos de Betim
+    </a>
     <nav>
       <a href="#trabalho">O trabalho</a>
       <a href="#alunos">Alunos</a>
@@ -21,17 +41,39 @@
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="top">
 
   <div class="hero">
-    <p class="eyebrow">Business Intelligence · Trabalho Prático</p>
-    <h1>Postos de combustível de Betim/MG</h1>
-    <p class="lead">Levantamento e análise dos postos de combustível da cidade de Betim, em Minas Gerais,
-      com foco em preços, bandeiras, serviços oferecidos e distribuição geográfica.</p>
+    <div class="hero-text">
+      <p class="eyebrow"><span class="dot"></span> Business Intelligence · Trabalho Prático</p>
+      <h1>Postos de combustível de <span class="grifo">Betim/MG</span></h1>
+      <p class="lead">Levantamento e análise dos postos de combustível da cidade de Betim, em Minas
+        Gerais, com foco em preços, bandeiras, serviços oferecidos e distribuição geográfica.</p>
+      <div class="hero-tags">
+        <span class="tag">20 postos</span>
+        <span class="tag">5 bandeiras</span>
+        <span class="tag">4 combustíveis</span>
+      </div>
+    </div>
+
+    <svg class="hero-art" viewBox="0 0 150 190" aria-hidden="true">
+      <!-- mangueira -->
+      <path class="art-linha" d="M96 54h16a9 9 0 0 1 9 9v46a7 7 0 0 0 14 0V72l-11-14"/>
+      <!-- corpo da bomba -->
+      <rect class="art-corpo" x="24" y="30" width="72" height="130" rx="10"/>
+      <!-- visor -->
+      <rect class="art-visor" x="38" y="46" width="44" height="30" rx="5"/>
+      <!-- "dígitos" do visor -->
+      <path class="art-digito" d="M46 56h10M46 64h22M60 56h12"/>
+      <!-- barras de dados no corpo -->
+      <path class="art-barra" d="M40 100h26M40 112h40M40 124h18M40 136h32"/>
+      <!-- base -->
+      <path class="art-chao" d="M10 170h130"/>
+    </svg>
   </div>
 
   <section id="trabalho">
-    <h2>Descrição do trabalho</h2>
+    <h2><svg class="icon h2-icon"><use href="#i-bomba"/></svg>Descrição do trabalho</h2>
     <p>O objetivo deste trabalho é aplicar as técnicas de Business Intelligence vistas na disciplina sobre
       uma base de dados levantada pelo próprio grupo. Escolhemos como tema os <strong>postos de combustível
       do município de Betim/MG</strong>, um assunto de interesse direto do motorista: onde abastecer mais
@@ -54,7 +96,7 @@
   </section>
 
   <section id="alunos">
-    <h2>Alunos</h2>
+    <h2><svg class="icon h2-icon"><use href="#i-alunos"/></svg>Alunos</h2>
     <ul class="alunos">
       <li>Diogo Lamera dos Santos</li>
       <li>Flávio Henrique Lara Santos</li>
@@ -64,20 +106,23 @@
   </section>
 
   <section id="mapa">
-    <h2>Mapa de indicadores geográficos</h2>
+    <h2><svg class="icon h2-icon"><use href="#i-mapa"/></svg>Mapa de indicadores geográficos</h2>
     <p>Aplicação de mapas desenvolvida no ArcGIS no início do semestre, com os postos georreferenciados
       e seus indicadores.</p>
     <div class="card link-card">
-      <div>
-        <p class="card-kicker">ArcGIS Instant Apps · Portfólio</p>
-        <p class="card-title">Postos de combustível de Betim — mapa de indicadores</p>
+      <div class="card-body">
+        <span class="card-icon"><svg class="icon"><use href="#i-mapa"/></svg></span>
+        <div>
+          <p class="card-kicker">ArcGIS Instant Apps · Portfólio</p>
+          <p class="card-title">Postos de combustível de Betim — mapa de indicadores</p>
+        </div>
       </div>
       <a class="btn" href="https://www.arcgis.com/apps/instant/portfolio/index.html?appid=b191c9f16548430f80f37fa9dd80865e" target="_blank" rel="noopener">Abrir o mapa ↗</a>
     </div>
   </section>
 
   <section id="painel">
-    <h2>Painel do Power BI</h2>
+    <h2><svg class="icon h2-icon"><use href="#i-painel"/></svg>Painel do Power BI</h2>
     <p>Painel construído com a mesma base de dados, reunindo os gráficos de análise de preços, bandeiras
       e serviços dos postos.</p>
 
@@ -92,14 +137,17 @@
          =================================================================== -->
 
     <div class="card link-card">
-      <div>
-        <p class="card-kicker">Microsoft Power BI</p>
-        <p class="card-title">Postos de combustível de Betim — painel analítico</p>
+      <div class="card-body">
+        <span class="card-icon"><svg class="icon"><use href="#i-painel"/></svg></span>
+        <div>
+          <p class="card-kicker">Microsoft Power BI</p>
+          <p class="card-title">Postos de combustível de Betim — painel analítico</p>
+        </div>
       </div>
       <a class="btn" href="COLE_AQUI_O_LINK_DO_POWER_BI" target="_blank" rel="noopener">Abrir o painel ↗</a>
     </div>
 
-    <p class="pendente">⚠ Substitua <code>COLE_AQUI_O_LINK_DO_POWER_BI</code> pelo link compartilhado do
+    <p class="pendente">Substitua <code>COLE_AQUI_O_LINK_DO_POWER_BI</code> pelo link compartilhado do
       painel e descomente o bloco do <code>iframe</code> abaixo no arquivo <code>index.html</code>.</p>
 
     <!--
@@ -111,10 +159,12 @@
 
 </main>
 
-<footer class="wrap">
-  <p>Trabalho Prático da disciplina de Business Intelligence. Dados levantados pelo grupo a partir do
-    GasoRadar, GasPedia e Carregados; coordenadas obtidas por geocodificação. Os preços variam
-    diariamente e servem como referência comparativa, não como cotação oficial.</p>
+<footer>
+  <div class="wrap">
+    <p>Trabalho Prático da disciplina de Business Intelligence. Dados levantados pelo grupo a partir do
+      GasoRadar, GasPedia e Carregados; coordenadas obtidas por geocodificação. Os preços variam
+      diariamente e servem como referência comparativa, não como cotação oficial.</p>
+  </div>
 </footer>
 
 </body>
